@@ -1,5 +1,7 @@
+import Landing from "../composants/landing"
+
 export default function Accueil(){
     return(
-        <section>Accueil</section>
+        <section><Landing/></section>
     )
 }
