@@ -14,6 +14,7 @@ public class Film {
     private int longueur;
     private String nationalite;
     private int nombreOscars;
+    @Column(length = 1024)
     private String imageURL;
 
     @ManyToMany
