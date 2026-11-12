@@ -2,44 +2,9 @@ import Navbar from '../composants/navbar'
 import Footer from '../composants/footer'
 import Filarial from '../composants/filarial';
 
+const items = []
+
 import { Link } from 'react-router-dom'
-
-// films
-import LeGrandBain from "../imagesSite/films/LeGrandBain.webp";
-import VingtDieux from "../imagesSite/films/VingtDieux.webp";
-import LaGuerreDesLulus from "../imagesSite/films/LaGuerreDesLulus.webp";
-import DjangoUnchained from "../imagesSite/films/DjangoUnchained.webp";
-import Deadpool2 from "../imagesSite/films/Deadpool2.webp";
-import BluePeriod from "../imagesSite/films/BluePeriod.webp";
-import Spiderman3 from "../imagesSite/films/Spiderman3.webp";
-import Soul from "../imagesSite/films/Soul.webp";
-import OnIra from "../imagesSite/films/OnIra.webp";
-import Novocaine from "../imagesSite/films/Novocaine.webp";
-import Thunderbolts from "../imagesSite/films/Thunderbolts.webp";
-import StarWarsTheLastJedi from "../imagesSite/films/StarWarsTheLastJedi.webp";
-import VenomLetThereBeCarnage from "../imagesSite/films/VenomLetThereBeCarnage.webp";
-import Clayface from "../imagesSite/films/Clayface.webp";
-import GodzillaMinusZero from "../imagesSite/films/GodzillaMinusZero.webp";
-import ResidentEvil from "../imagesSite/films/ResidentEvil.webp";
-
-const items = [
-    { image: LeGrandBain, title: "Le Grand Bain" },
-    { image: VingtDieux, title: "Vingt Dieux" },
-    { image: LaGuerreDesLulus, title: "La Guerre des Lulus" },
-    { image: DjangoUnchained, title: "Django Unchained" },
-    { image: Deadpool2, title: "Deadpool 2" },
-    { image: BluePeriod, title: "Blue Period" },
-    { image: Spiderman3, title: "Spider-Man 3" },
-    { image: Soul, title: "Soul" },
-    { image: OnIra, title: "On ira" },
-    { image: Novocaine, title: "Novocaine" },
-    { image: Thunderbolts, title: "Thunderbolts" },
-    { image: StarWarsTheLastJedi, title: "Star Wars: The Last Jedi" },
-    { image: VenomLetThereBeCarnage, title: "Venom: Let There Be Carnage" },
-    { image: Clayface, title: "Clayface" },
-    { image: GodzillaMinusZero, title: "Godzilla Minus Zero" },
-    { image: ResidentEvil, title: "Resident Evil" },
-];
 
 export default function Catalogue() {
     return (
