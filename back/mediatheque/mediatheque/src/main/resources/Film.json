@@ -1,0 +1,356 @@
+[
+  {
+    "id": 1,
+    "titre": "Le Grand Bain",
+    "anneeSortie": 2018,
+    "longueur": 117,
+    "nationalite": "France",
+    "nombreOscars": 0,
+    "imageURL": "https://fr.web.img6.acsta.net/pictures/18/08/21/18/41/2636278.jpg",
+    "genre": [
+      {"code": "DRAME", "libelle": "Drame"},
+      {"code": "COMEDIE", "libelle": "Comédie"}
+    ],
+    "realisateur": [{"id":54291,"nom":"Lellouche","prenom":"Gilles"}],
+    "acteur": [
+      {"code":"8789","nom":"Amalric","prenom":"Mathieu"},
+      {"code":"19866","nom":"Canet","prenom":"Guillaume"},
+      {"code":"47820","nom":"Poelvoorde","prenom":"Benoît"},
+      {"code":"7037","nom":"Anglade","prenom":"Jean-Hugues"},
+      {"code":"118178","nom":"Efira","prenom":"Virginie"}
+    ]
+  },
+  {
+    "id": 2,
+    "titre": "Vingt Dieux",
+    "anneeSortie": 2024,
+    "longueur": 90,
+    "nationalite": "France",
+    "nombreOscars": 0,
+    "imageURL": "https://i0.wp.com/laurentlecrabe.com/wp-content/uploads/2024/10/IMG_2374.jpg?fit=1080%2C1350&ssl=1",
+    "genre": [
+      {"code": "DRAME", "libelle": "Drame"},
+      {"code": "COMEDIE", "libelle": "Comédie"}
+    ],
+    "realisateur": [{"id":2292518,"nom":"Courvoisier","prenom":"Louise"}],
+    "acteur": [
+      {"code":"4498192","nom":"Faveau","prenom":"Clément"},
+      {"code":"4649720","nom":"Barthélémy","prenom":"Maïwène"},
+      {"code":"4498193","nom":"Garret","prenom":"Luna"},
+      {"code":"4498194","nom":"Bernard","prenom":"Mathis"},
+      {"code":"4498195","nom":"Baudry","prenom":"Dimitri"}
+    ]
+  },
+  {
+    "id": 3,
+    "titre": "La Guerre des Lulus",
+    "anneeSortie": 2023,
+    "longueur": 109,
+    "nationalite": "France, Luxembourg",
+    "nombreOscars": 0,
+    "imageURL": "https://fr.web.img6.acsta.net/pictures/22/11/17/11/47/3561503.jpg",
+    "genre": [
+      {"code": "AVENTURE", "libelle": "Aventure"},
+      {"code": "HISTOIRE", "libelle": "Histoire"},
+      {"code": "FAMILIAL", "libelle": "Familial"},
+      {"code": "DRAME", "libelle": "Drame"},
+      {"code": "GUERRE", "libelle": "Guerre"}
+    ],
+    "realisateur": [{"id":55379,"nom":"Samuell","prenom":"Yann"}],
+    "acteur": [
+      {"code":"24041","nom":"Damiens","prenom":"François"},
+      {"code":"4166","nom":"Carré","prenom":"Isabelle"},
+      {"code":"1332481","nom":"Sylla","prenom":"Ahmed"},
+      {"code":"59031","nom":"Bourdon","prenom":"Didier"},
+      {"code":"1633253","nom":"Schiltz","prenom":"Luc"}
+    ]
+  },
+  {
+    "id": 4,
+    "titre": "Django Unchained",
+    "anneeSortie": 2012,
+    "longueur": 165,
+    "nationalite": "États-Unis",
+    "nombreOscars": 2,
+    "imageURL": "https://i.ebayimg.com/images/g/CM8AAOxy~dNQ9t4x/s-l1200.jpg",
+    "genre": [
+      {"code": "DRAME", "libelle": "Drame"},
+      {"code": "WESTERN", "libelle": "Western"}
+    ],
+    "realisateur": [{"id":138,"nom":"Tarantino","prenom":"Quentin"}],
+    "acteur": [
+      {"code":"134","nom":"Foxx","prenom":"Jamie"},
+      {"code":"27319","nom":"Waltz","prenom":"Christoph"},
+      {"code":"6193","nom":"DiCaprio","prenom":"Leonardo"},
+      {"code":"11703","nom":"Washington","prenom":"Kerry"},
+      {"code":"2231","nom":"Jackson","prenom":"Samuel L."}
+    ]
+  },
+  {
+    "id": 5,
+    "titre": "Deadpool 2",
+    "anneeSortie": 2018,
+    "longueur": 119,
+    "nationalite": "États-Unis",
+    "nombreOscars": 0,
+    "imageURL": "https://m.media-amazon.com/images/M/MV5BZjYyNjFkZGMtMmY2Mi00ZDI1LWI0OGYtOTlkNjNiN2QxZDdlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "genre": [
+      {"code": "ACTION", "libelle": "Action"},
+      {"code": "COMEDIE", "libelle": "Comédie"},
+      {"code": "AVENTURE", "libelle": "Aventure"}
+    ],
+    "realisateur": [{"id":40684,"nom":"Leitch","prenom":"David"}],
+    "acteur": [
+      {"code":"10859","nom":"Reynolds","prenom":"Ryan"},
+      {"code":"16851","nom":"Brolin","prenom":"Josh"},
+      {"code":"54882","nom":"Baccarin","prenom":"Morena"},
+      {"code":"1139349","nom":"Dennison","prenom":"Julian"},
+      {"code":"1545693","nom":"Beetz","prenom":"Zazie"}
+    ]
+  },
+  {
+    "id": 6,
+    "titre": "Blue Period",
+    "anneeSortie": 2024,
+    "longueur": 115,
+    "nationalite": "Japon",
+    "nombreOscars": 0,
+    "imageURL": "https://m.media-amazon.com/images/M/MV5BYjY5OGJhZWItMjRkOC00YjI1LTg1NmEtMWI2MTBjZmIzNjAyXkEyXkFqcGc@._V1_.jpg",
+    "genre": [
+      {"code": "DRAME", "libelle": "Drame"},
+      {"code": "COMEDIE", "libelle": "Comédie"}
+    ],
+    "realisateur": [{"id":1735355,"nom":"Hagiwara","prenom":"Kentaro"}],
+    "acteur": [
+      {"code":"2293954","nom":"Maeda","prenom":"Gordon"},
+      {"code":"2389740","nom":"Takahashi","prenom":"Fumiya"},
+      {"code":"1477273","nom":"Itagaki","prenom":"Rihito"},
+      {"code":"1401338","nom":"Sakurada","prenom":"Hiyori"},
+      {"code":"2018504","nom":"Nakajima","prenom":"Sena"}
+    ]
+  },
+  {
+    "id": 7,
+    "titre": "Spider-Man 3",
+    "anneeSortie": 2007,
+    "longueur": 139,
+    "nationalite": "États-Unis",
+    "nombreOscars": 0,
+    "imageURL": "https://i.ebayimg.com/00/s/MTYwMFgxMTE5/z/RAAAAOSwx1VkAQbT/$_57.JPG?set_id=8800005007",
+    "genre": [
+      {"code": "ACTION", "libelle": "Action"},
+      {"code": "AVENTURE", "libelle": "Aventure"},
+      {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"}
+    ],
+    "realisateur": [{"id":7623,"nom":"Raimi","prenom":"Sam"}],
+    "acteur": [
+      {"code":"2219","nom":"Maguire","prenom":"Tobey"},
+      {"code":"205","nom":"Dunst","prenom":"Kirsten"},
+      {"code":"17051","nom":"Franco","prenom":"James"},
+      {"code":"19159","nom":"Church","prenom":"Thomas Haden"},
+      {"code":"17052","nom":"Grace","prenom":"Topher"}
+    ]
+  },
+  {
+    "id": 8,
+    "titre": "Soul",
+    "anneeSortie": 2020,
+    "longueur": 100,
+    "nationalite": "États-Unis",
+    "nombreOscars": 2,
+    "imageURL": "https://i.ebayimg.com/00/s/MTM1Mlg5MDA=/z/FaUAAOSwvFteklwI/$_57.JPG?set_id=8800005007",
+    "genre": [
+      {"code": "ANIMATION", "libelle": "Animation"},
+      {"code": "FAMILIAL", "libelle": "Familial"},
+      {"code": "DRAME", "libelle": "Drame"},
+      {"code": "MUSIQUE", "libelle": "Musique"},
+      {"code": "FANTASTIQUE", "libelle": "Fantastique"}
+    ],
+    "realisateur": [{"id":12890,"nom":"Docter","prenom":"Pete"}],
+    "acteur": [
+      {"code":"134","nom":"Foxx","prenom":"Jamie"},
+      {"code":"56323","nom":"Fey","prenom":"Tina"},
+      {"code":"78577","nom":"Norton","prenom":"Graham"},
+      {"code":"15298","nom":"House","prenom":"Rachel"},
+      {"code":"8602","nom":"Braga","prenom":"Alice"}
+    ]
+  },
+  {
+    "id": 9,
+    "titre": "On ira",
+    "anneeSortie": 2025,
+    "longueur": 97,
+    "nationalite": "France",
+    "nombreOscars": 0,
+    "imageURL": "https://fr.web.img5.acsta.net/img/4e/64/4e644edc4b90cae39ea31727a29cdb09.jpg",
+    "genre": [
+      {"code": "COMEDIE", "libelle": "Comédie"},
+      {"code": "DRAME", "libelle": "Drame"}
+    ],
+    "realisateur": [{"id":2032919,"nom":"Baroux","prenom":"Enya"}],
+    "acteur": [
+      {"code":"1141","nom":"Vincent","prenom":"Hélène"},
+      {"code":"544685","nom":"Lottin","prenom":"Pierre"},
+      {"code":"1636467","nom":"Ayala","prenom":"David"},
+      {"code":"3936734","nom":"Gasquet","prenom":"Juliette"},
+      {"code":"2032919","nom":"Baroux","prenom":"Enya"}
+    ]
+  },
+  {
+    "id": 10,
+    "titre": "Novocaine",
+    "anneeSortie": 2025,
+    "longueur": 110,
+    "nationalite": "États-Unis, Canada, Afrique du Sud",
+    "nombreOscars": 0,
+    "imageURL": "https://cdng.europosters.eu/pod_public/1300/315989.jpg",
+    "genre": [
+      {"code": "ACTION", "libelle": "Action"},
+      {"code": "COMEDIE", "libelle": "Comédie"},
+      {"code": "THRILLER", "libelle": "Thriller"}
+    ],
+    "realisateur": [
+      {"id":1361389,"nom":"Berk","prenom":"Dan"},
+      {"id":1283526,"nom":"Olsen","prenom":"Robert"}
+    ],
+    "acteur": [
+      {"code":"1030513","nom":"Quaid","prenom":"Jack"},
+      {"code":"1654001","nom":"Midthunder","prenom":"Amber"},
+      {"code":"60960","nom":"Nicholson","prenom":"Ray"},
+      {"code":"1660452","nom":"Gabriel","prenom":"Betty"},
+      {"code":"59841","nom":"Walsh","prenom":"Matt"}
+    ]
+  },
+  {
+    "id": 11,
+    "titre": "Thunderbolts",
+    "anneeSortie": 2025,
+    "longueur": 127,
+    "nationalite": "États-Unis",
+    "nombreOscars": 0,
+    "imageURL": "https://m.media-amazon.com/images/I/71EagyHly6L._AC_UF1000,1000_QL80_.jpg",
+    "genre": [
+      {"code": "ACTION", "libelle": "Action"},
+      {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"},
+      {"code": "AVENTURE", "libelle": "Aventure"}
+    ],
+    "realisateur": [{"id":836732,"nom":"Schreier","prenom":"Jake"}],
+    "acteur": [
+      {"code":"1373737","nom":"Pugh","prenom":"Florence"},
+      {"code":"60898","nom":"Stan","prenom":"Sebastian"},
+      {"code":"15886","nom":"Louis-Dreyfus","prenom":"Julia"},
+      {"code":"1700685","nom":"Pullman","prenom":"Lewis"},
+      {"code":"35029","nom":"Harbour","prenom":"David"}
+    ]
+  },
+  {
+    "id": 12,
+    "titre": "Star Wars: The Last Jedi",
+    "anneeSortie": 2017,
+    "longueur": 152,
+    "nationalite": "États-Unis",
+    "nombreOscars": 0,
+    "imageURL": "https://www.movieartarena.com/imgs/episode8ib.jpg",
+    "genre": [
+      {"code": "AVENTURE", "libelle": "Aventure"},
+      {"code": "ACTION", "libelle": "Action"},
+      {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"}
+    ],
+    "realisateur": [{"id":67367,"nom":"Johnson","prenom":"Rian"}],
+    "acteur": [
+      {"code":"2","nom":"Hamill","prenom":"Mark"},
+      {"code":"4","nom":"Fisher","prenom":"Carrie"},
+      {"code":"1023139","nom":"Driver","prenom":"Adam"},
+      {"code":"1315036","nom":"Ridley","prenom":"Daisy"},
+      {"code":"236695","nom":"Boyega","prenom":"John"}
+    ]
+  },
+  {
+    "id": 13,
+    "titre": "Venom: Let There Be Carnage",
+    "anneeSortie": 2021,
+    "longueur": 97,
+    "nationalite": "États-Unis",
+    "nombreOscars": 0,
+    "imageURL": "https://i.ebayimg.com/images/g/kEoAAOSwSKdhG9vZ/s-l1200.jpg",
+    "genre": [
+      {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"},
+      {"code": "ACTION", "libelle": "Action"},
+      {"code": "AVENTURE", "libelle": "Aventure"}
+    ],
+    "realisateur": [{"id":1333,"nom":"Serkis","prenom":"Andy"}],
+    "acteur": [
+      {"code":"2524","nom":"Hardy","prenom":"Tom"},
+      {"code":"57755","nom":"Harrelson","prenom":"Woody"},
+      {"code":"1812","nom":"Williams","prenom":"Michelle"},
+      {"code":"2038","nom":"Harris","prenom":"Naomie"},
+      {"code":"81316","nom":"Scott","prenom":"Reid"}
+    ]
+  },
+  {
+    "id": 14,
+    "titre": "Clayface",
+    "anneeSortie": 2026,
+    "longueur": 108,
+    "nationalite": "États-Unis",
+    "nombreOscars": 0,
+    "imageURL": "https://www.comicsblog.fr/images/editeur/Arno/avril-2026/Clayface.jpeg",
+    "genre": [
+      {"code": "HORREUR", "libelle": "Horreur"},
+      {"code": "THRILLER", "libelle": "Thriller"},
+      {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"}
+    ],
+    "realisateur": [{"id":63306,"nom":"Watkins","prenom":"James"}],
+    "acteur": [
+      {"code":"1327945","nom":"Harries","prenom":"Tom Rhys"},
+      {"code":"1537686","nom":"Ackie","prenom":"Naomi"},
+      {"code":"1665","nom":"Marsan","prenom":"Eddie"},
+      {"code":"2978","nom":"Minghella","prenom":"Max"},
+      {"code":"93236","nom":"Dencik","prenom":"David"}
+    ]
+  },
+  {
+    "id": 15,
+    "titre": "Godzilla Minus Zero",
+    "anneeSortie": 2026,
+    "longueur": 135,
+    "nationalite": "Japon",
+    "nombreOscars": 0,
+    "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58htNKGPlvc7VUOCKknHKXX_IgBA4jxYUokMQcSAKkMLGrwtF9f-rVy4&s=10",
+    "genre": [
+      {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"},
+      {"code": "HORREUR", "libelle": "Horreur"},
+      {"code": "ACTION", "libelle": "Action"}
+    ],
+    "realisateur": [{"id":43652,"nom":"Yamazaki","prenom":"Takashi"}],
+    "acteur": [
+      {"code":"225730","nom":"Kamiki","prenom":"Ryunosuke"},
+      {"code":"1516266","nom":"Hamabe","prenom":"Minami"},
+      {"code":"136191","nom":"Tanaka","prenom":"Min"},
+      {"code":"111691","nom":"Yoshioka","prenom":"Hidetaka"},
+      {"code":"87637","nom":"Nagasawa","prenom":"Masami"}
+    ]
+  },
+  {
+    "id": 16,
+    "titre": "Resident Evil",
+    "anneeSortie": 2026,
+    "longueur": 94,
+    "nationalite": "États-Unis, Allemagne, France",
+    "nombreOscars": 0,
+    "imageURL": "https://scontent-cdg4-3.cdninstagram.com/v/t51.82787-15/707338391_18441559129137203_6207076784060830122_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&_nc_map=urlgen_bucketless&cb=30a688f7-99daaf84&ig_cache_key=MzkwODMyOTQ3NTQ2MTY3NjY4Mw%3D%3D.3-ccb7-5-cb30a688f7-99daaf84&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=g70okMN_bPYQ7kNvwEK9hG3&_nc_oc=AdpTjT_xgCC_BRp75T20uEMROg74Cy9Shf8AbMDqpY84Y40plL2yt9Z-LxTTHCJ36ybLKGESzAjd_SrQeFRxRr1u&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-cdg4-3.cdninstagram.com&_nc_gid=yJ-QKxMVQIsA6xV-r4XtwQ&_nc_ss=7a22e&oh=00_AQR1Ni-OUoSZvY9TQt6BhIdqbvHPfgYu994TwhUzeVJQbA&oe=6AFBF6F3",
+    "genre": [
+      {"code": "HORREUR", "libelle": "Horreur"},
+      {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"},
+      {"code": "AVENTURE", "libelle": "Aventure"}
+    ],
+    "realisateur": [{"id":84833,"nom":"Cregger","prenom":"Zach"}],
+    "acteur": [
+      {"code":"148992","nom":"Abrams","prenom":"Austin"},
+      {"code":"1294982","nom":"Hauser","prenom":"Paul Walter"},
+      {"code":"3119545","nom":"Reis","prenom":"Kali"},
+      {"code":"1838225","nom":"Cherry","prenom":"Zach"},
+      {"code":"1169291","nom":"Wilson","prenom":"Johnno"}
+    ]
+  }
+]

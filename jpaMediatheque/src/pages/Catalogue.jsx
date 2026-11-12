@@ -45,7 +45,7 @@ export default function Catalogue() {
     return (
         <section>
             <Navbar />
-            <Filarial titrePage="Catalogue"/>
+            <Filarial titrePage="Catalogue" />
             <main className="min-h-screen bg-linear-to-r from-slate-800 to-slate-700">
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
@@ -62,9 +62,15 @@ export default function Catalogue() {
                             aria-label="Filtrer le catalogue"
                             className="h-fit w-full shrink-0 rounded-xl border border-slate-600 bg-slate-900/60 p-5 text-left shadow-lg lg:w-64"
                         >
-                            <h2 className="mb-4 text-lg font-semibold text-white">
-                                Filtrer les films
-                            </h2>
+                            <div className="flex flex-row gap-3">
+                                <h2 className="mb-4 text-lg font-semibold text-white">
+                                    Filtrer les films
+                                </h2>
+                                <p className="mt-1 text-sm text-slate-300">
+                                    {items.length} film
+                                    {items.length !== 1 ? "s" : ""}
+                                </p>
+                            </div>
                             <label
                                 htmlFor="recherche-film"
                                 className="mb-4 block text-sm font-medium text-slate-300"
@@ -79,10 +85,6 @@ export default function Catalogue() {
                             aria-label="Catalogue de films"
                             className="min-w-0 flex-1"
                         >
-                            <p className="mb-4 text-sm text-slate-300">
-                                {items.length} film
-                                {items.length !== 1 ? "s" : ""}
-                            </p>
                             {items.length > 0 ? (
                                 <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
                                     {items.map((film) => (

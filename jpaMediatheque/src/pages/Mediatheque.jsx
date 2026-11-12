@@ -15,6 +15,13 @@ export default function Mediatheque() {
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                         <h1 className="dancing-script text-3xl font-extrabold tracking-tight text-white md:text-5xl">
+                            Découvrez de nouveaux films
+                        </h1>
+                    </header>
+                </div>
+                <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
+                    <header className="mb-8 border-b border-slate-600 pb-6 text-left">
+                        <h1 className="dancing-script text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                             Les films avec le plus d'oscars
                         </h1>
                     </header>
@@ -22,7 +29,7 @@ export default function Mediatheque() {
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                         <h1 className="dancing-script text-3xl font-extrabold tracking-tight text-white md:text-5xl">
-                           Section
+                            Les acteurs
                         </h1>
                     </header>
                 </div>

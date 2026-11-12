@@ -1,0 +1,58 @@
+[
+  {
+    "code": "ACTION",
+    "libelle": "Action"
+  },
+  {
+    "code": "AVENTURE",
+    "libelle": "Aventure"
+  },
+  {
+    "code": "ANIMATION",
+    "libelle": "Animation"
+  },
+  {
+    "code": "COMEDIE",
+    "libelle": "Comédie"
+  },
+  {
+    "code": "DRAME",
+    "libelle": "Drame"
+  },
+  {
+    "code": "FAMILIAL",
+    "libelle": "Familial"
+  },
+  {
+    "code": "FANTASTIQUE",
+    "libelle": "Fantastique"
+  },
+  {
+    "code": "HISTOIRE",
+    "libelle": "Histoire"
+  },
+  {
+    "code": "HORREUR",
+    "libelle": "Horreur"
+  },
+  {
+    "code": "MUSIQUE",
+    "libelle": "Musique"
+  },
+  {
+    "code": "SCIENCE_FICTION",
+    "libelle": "Science-Fiction"
+  },
+  {
+    "code": "THRILLER",
+    "libelle": "Thriller"
+  },
+  {
+    "code": "GUERRE",
+    "libelle": "Guerre"
+  },
+  {
+    "code": "WESTERN",
+    "libelle": "Western"
+  }
+]
