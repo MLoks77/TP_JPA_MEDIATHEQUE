@@ -1,9 +1,18 @@
 import mediathequeBG from "/images/mediathequeBG.webp"
+import { Link, useLocation } from "react-router-dom";
 
-const titre ="Votre médiathèque en ligne"
-const text = "Explorez des milliers de films, des grands classiques aux dernières sorties"
+const titreF = "Votre médiathèque en ligne"
+const textF = "Explorez des milliers de films, des grands classiques aux dernières sorties"
+
+const Liens = [
+    { titre: "Accueil", lien: "/" },
+    { titre: "Mediatheque", lien: "/mediatheque" },
+    { titre: "Catalogue", lien: "/catalogue" },
+];
 
 export default function Footer() {
+    const { pathname } = useLocation();
+
     return (
         <section>
             <div className="h-3 w-full bg-slate-900"></div>
@@ -20,8 +29,22 @@ export default function Footer() {
 
                 <article className="relative z-20 w-full justify-start flex flex-col gap-3">
                     <div className="gap-1 flex flex-col">
-                        <h2 className="text-2xl font-bold">{titre}</h2>
-                        <p className="text-slate-300 mt-2">{text}</p>
+                        <h2 className="text-2xl font-bold">{titreF}</h2>
+                        <p className="text-slate-300 mt-2">{textF}</p>
+                        <div className="flex items-center gap-6 text-sm font-medium">
+                            {Liens.map((item) => (
+                                <Link
+                                    key={item.titre}
+                                    to={item.lien}
+                                    className={`text-slate-300 transition hover:text-white p-2 ${pathname === item.lien && item.lien !== "/"
+                                            ? "underline underline-offset-4"
+                                            : ""
+                                        }`}
+                                >
+                                    {item.titre}
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </article>
 
