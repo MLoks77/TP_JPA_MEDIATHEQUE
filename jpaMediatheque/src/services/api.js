@@ -2,6 +2,7 @@
 
 const API_URL = "http://localhost:8080";
 
+// film
 export async function getFilms() {
   try {
     const reponse = await fetch(`${API_URL}/api/films`, {
@@ -19,6 +20,7 @@ export async function getFilms() {
   }
 }
 
+// films par id
 export async function getFilmsById(id) {
   try {
     const reponse = await fetch(`${API_URL}/api/films/${id}`, {
@@ -36,6 +38,7 @@ export async function getFilmsById(id) {
   }
 }
 
+// acteurs
 export async function getActeurs() {
   try {
     const reponse = await fetch(`${API_URL}/api/acteurs`, {
@@ -53,6 +56,7 @@ export async function getActeurs() {
   }
 }
 
+// acteurs par code
 export async function getActeursByCode(code) {
   try {
     const reponse = await fetch(`${API_URL}/api/acteurs/${code}`, {
@@ -70,6 +74,7 @@ export async function getActeursByCode(code) {
   }
 }
 
+// genres
 export async function getGenres() {
   try {
     const reponse = await fetch(`${API_URL}/api/genres`, {
@@ -87,6 +92,7 @@ export async function getGenres() {
   }
 }
 
+// reals
 export async function getRealisateurs() {
   try {
     const reponse = await fetch(`${API_URL}/api/realisateurs`, {
@@ -104,6 +110,7 @@ export async function getRealisateurs() {
   }
 }
 
+// reals par id
 export async function getRealisateursById(id) {
   try {
     const reponse = await fetch(`${API_URL}/api/realisateurs/${id}`, {

@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
+// animation gsap pour les apparitions des films
+// https://gsap.com
 export default function GSAPanimationApparition(items) {
     const containerRef = useRef(null);
 

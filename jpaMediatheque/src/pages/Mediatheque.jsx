@@ -97,13 +97,16 @@ export default function Mediatheque() {
                 </section>
 
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14 flex flex-col lg:flex-row gap-10">
+
                     {/* Section 1 : Par genre */}
                     <div className="flex-1 min-w-0">
+
                         <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                             <h1 className=" text-2xl font-extrabold tracking-tight text-white md:text-3xl">
                                 Découvrez par genre : {genreRandom?.libelle ?? ""}
                             </h1>
                         </header>
+
                         <div
                             ref={genresFilmRef}
                             className="flex flex-wrap justify-center sm:justify-start gap-4"
@@ -134,11 +137,13 @@ export default function Mediatheque() {
 
                     {/* Section 2 : Plus d'oscars */}
                     <div className="flex-1 min-w-0">
+
                         <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                             <h1 className=" text-2xl font-extrabold tracking-tight text-white md:text-3xl">
                                 Nos 3 films avec le plus d'oscars
                             </h1>
                         </header>
+
                         <div
                             ref={filmsPlusOscarsRef}
                             className="flex flex-wrap justify-center sm:justify-start gap-4"
@@ -169,11 +174,13 @@ export default function Mediatheque() {
                 </div>
 
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
+
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                         <h1 className=" text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                             Les réalisateurs de notre catalogue
                         </h1>
                     </header>
+
                     <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-600">
                         {realisateurs.map((realisateur) => (
                             <Link key={realisateur.id} to={`/profil/realisateur/${realisateur.id}`}>
@@ -190,6 +197,7 @@ export default function Mediatheque() {
                     </div>
                 </div>
 
+                {/* reals. + real. avec le plus de films */}
                 {realisateurPlusDeFilms && (
                     <section className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto px-6 gap-5 pb-10">
                         <div className="flex-1 flex flex-col items-center justify-center p-8 h-auto rounded-lg min-h-87.5">
@@ -227,12 +235,15 @@ export default function Mediatheque() {
                     </section>
                 )}
 
+                {/*listes acteurs*/}
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
+
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                         <h1 className=" text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                             Les acteurs de notre catalogue
                         </h1>
                     </header>
+
                     <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-600">
                         {acteurs.map((acteur) => (
                             <Link key={acteur.code} to={`/profil/acteur/${acteur.code}`}>

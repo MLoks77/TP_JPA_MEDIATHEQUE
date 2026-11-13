@@ -22,6 +22,7 @@ export default function Acteur() {
         });
     }, [code]);
 
+    {/* les films de l'acteur */}
     const filmsActeur = useMemo(
         () => films.filter((film) =>
             film.acteur?.some((acteurLie) => acteurLie.code === code)
@@ -34,10 +35,14 @@ export default function Acteur() {
         <section>
             <Navbar />
             <Filarial titrePage="Catalogue" />
+
             <main className="min-h-screen bg-linear-to-r from-slate-900  to-slate-700">
+
                 <section className="p-4 max-w-7xl w-full mx-auto">
                     <Revenir destination="/mediatheque" texte="à la médiathèque" />
                 </section>
+
+                {/*partie avec les informations du profil de l'acteur*/}
                 <section className="max-w-7xl w-full mx-auto p-6 text-white">
                     <div className="flex flex-col md:flex-row gap-8 items-stretch">
                         {acteur.imageURL && (

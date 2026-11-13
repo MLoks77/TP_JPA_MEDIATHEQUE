@@ -68,6 +68,7 @@ export default function Catalogue() {
             <Filarial titrePage="Catalogue" />
             <main className="min-h-screen bg-linear-to-r from-slate-900  to-slate-700">
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
+
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                         <h1 className="dancing-script text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                             Catalogue
@@ -77,6 +78,7 @@ export default function Catalogue() {
                         </p>
                     </header>
 
+                    {/* filtres */}
                     <div className="flex flex-col gap-8 lg:flex-row">
                         <Filtre
                             genres={genres}
@@ -97,6 +99,7 @@ export default function Catalogue() {
                             nombreFilms={filmsAffiches.length}
                         />
 
+                        {/* films */}
                         <section
                             aria-label="Catalogue de films"
                             className="min-w-0 flex-1"

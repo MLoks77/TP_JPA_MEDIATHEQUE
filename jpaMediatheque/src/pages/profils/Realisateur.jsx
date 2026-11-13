@@ -22,6 +22,7 @@ export default function Realisateur() {
         });
     }, [id]);
 
+    {/* les films du réalisateur */}
     const filmsRealisateur = useMemo(
         () => films.filter((film) =>
             film.realisateur?.some((realisateurLie) => String(realisateurLie.id) === id)
@@ -35,9 +36,12 @@ export default function Realisateur() {
             <Navbar />
             <Filarial titrePage="Réalisateur" />
             <main className="min-h-screen bg-linear-to-r from-slate-900  to-slate-700">
+
                 <section className="p-4 max-w-7xl w-full mx-auto">
                     <Revenir destination="/mediatheque" texte="à la médiathèque" />
                 </section>
+
+                {/* infos du réalisateur */}
                 <section className="max-w-7xl w-full mx-auto p-6 text-white">
                     <div className="flex flex-col md:flex-row gap-8 items-stretch">
                         {realisateur.imageURL && (
