@@ -21,6 +21,7 @@ export default function Catalogue() {
     const [ChoixGenre, setChoixGenre] = useState("");
     const [ChoixReal, setChoixReal] = useState("");
     const [ChoixActeur, setChoixActeur] = useState([]);
+    const [plusieursRealisateurs, setPlusieursRealisateurs] = useState(false);
 
     useEffect(() => {
         Promise.all([getFilms(), getGenres(), getRealisateurs(), getActeurs()]).then(([filmsAPI, genresAPI, RealAPI, ActeurAPI]) => {
@@ -42,7 +43,10 @@ export default function Catalogue() {
             || film.acteur?.some((acteur) =>
                 ChoixActeur.some((choisi) => choisi.code === acteur.code)
             ); // vérifie si le film a au moins un acteur choisi
-        return matchTitre && matchGenre && matchRealisateur && matchActeur;
+        const matchPlusieursRealisateurs = !plusieursRealisateurs
+            || (film.realisateur?.length ?? 0) > 1; // multiréalisateurs
+        return matchTitre && matchGenre && matchRealisateur && matchActeur
+            && matchPlusieursRealisateurs;
     });
 
     return (
@@ -73,6 +77,8 @@ export default function Catalogue() {
                             setChoixReal={setChoixReal}
                             choixActeur={ChoixActeur}
                             setChoixActeur={setChoixActeur}
+                            plusieursRealisateurs={plusieursRealisateurs}
+                            setPlusieursRealisateurs={setPlusieursRealisateurs}
                             nombreFilms={FiltreFilms.length}
                         />
 

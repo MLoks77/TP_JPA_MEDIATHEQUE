@@ -118,7 +118,7 @@ export default function Mediatheque() {
                     <div className="flex-1 min-w-0">
                         <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                             <h1 className="dancing-script text-2xl font-extrabold tracking-tight text-white md:text-3xl">
-                                Nos films avec le plus d'oscars
+                                Nos 3 films avec le plus d'oscars
                             </h1>
                         </header>
                         <div className="flex flex-wrap justify-center sm:justify-start gap-4">

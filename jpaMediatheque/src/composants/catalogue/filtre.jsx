@@ -32,6 +32,8 @@ export default function Filtre({
     setChoixReal,
     choixActeur,
     setChoixActeur,
+    plusieursRealisateurs,
+    setPlusieursRealisateurs,
     nombreFilms, // on définit tout les props dont on a besoin
 }) {
     const basculerActeur = (acteur) => {
@@ -117,6 +119,16 @@ export default function Filtre({
                         ))}
                     </select>
                 </div>
+
+                <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
+                    <input
+                        type="checkbox"
+                        checked={plusieursRealisateurs}
+                        onChange={(event) => setPlusieursRealisateurs(event.target.checked)}
+                        className="h-4 w-4 cursor-pointer accent-slate-400"
+                    />
+                    <span>Films avec plusieurs réalisateurs</span>
+                </label>
 
                 <div className="flex flex-col gap-2">
                     <p className="text-sm font-medium text-slate-300">
