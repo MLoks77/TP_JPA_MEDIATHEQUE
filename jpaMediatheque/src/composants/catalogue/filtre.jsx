@@ -34,6 +34,8 @@ export default function Filtre({
     setChoixActeur,
     plusieursRealisateurs,
     setPlusieursRealisateurs,
+    trierParOscars,
+    setTrierParOscars,
     nombreFilms, // on définit tout les props dont on a besoin
 }) {
     const basculerActeur = (acteur) => {
@@ -128,6 +130,16 @@ export default function Filtre({
                         className="h-4 w-4 cursor-pointer accent-slate-400"
                     />
                     <span>Films avec plusieurs réalisateurs</span>
+                </label>
+
+                <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
+                    <input
+                        type="checkbox"
+                        checked={trierParOscars}
+                        onChange={(event) => setTrierParOscars(event.target.checked)}
+                        className="h-4 w-4 cursor-pointer accent-slate-400"
+                    />
+                    <span>Trier par nombre d’Oscars</span>
                 </label>
 
                 <div className="flex flex-col gap-2">

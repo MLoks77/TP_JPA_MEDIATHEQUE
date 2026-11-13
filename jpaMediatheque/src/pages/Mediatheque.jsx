@@ -85,7 +85,7 @@ export default function Mediatheque() {
                     {/* Section 1 : Par genre */}
                     <div className="flex-1 min-w-0">
                         <header className="mb-8 border-b border-slate-600 pb-6 text-left">
-                            <h1 className="dancing-script text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                            <h1 className=" text-2xl font-extrabold tracking-tight text-white md:text-3xl">
                                 Découvrez par genre : {genreRandom?.libelle ?? ""}
                             </h1>
                         </header>
@@ -117,7 +117,7 @@ export default function Mediatheque() {
                     {/* Section 2 : Plus d'oscars */}
                     <div className="flex-1 min-w-0">
                         <header className="mb-8 border-b border-slate-600 pb-6 text-left">
-                            <h1 className="dancing-script text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                            <h1 className=" text-2xl font-extrabold tracking-tight text-white md:text-3xl">
                                 Nos 3 films avec le plus d'oscars
                             </h1>
                         </header>
@@ -149,7 +149,7 @@ export default function Mediatheque() {
 
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
-                        <h1 className="dancing-script text-3xl font-extrabold tracking-tight text-white md:text-5xl">
+                        <h1 className=" text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                             Les réalisateurs de notre catalogue
                         </h1>
                     </header>
@@ -208,7 +208,7 @@ export default function Mediatheque() {
 
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
-                        <h1 className="dancing-script text-3xl font-extrabold tracking-tight text-white md:text-5xl">
+                        <h1 className=" text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                             Les acteurs de notre catalogue
                         </h1>
                     </header>

@@ -4,6 +4,8 @@ import Footer from '../composants/footer'
 import Filarial from '../composants/filarial';
 import Filtre from '../composants/catalogue/filtre';
 
+import { FaTrophy } from "react-icons/fa";
+
 // api
 import { useEffect, useState } from "react";
 import { getFilms, getGenres, getRealisateurs, getActeurs } from "../services/api";
@@ -22,6 +24,7 @@ export default function Catalogue() {
     const [ChoixReal, setChoixReal] = useState("");
     const [ChoixActeur, setChoixActeur] = useState([]);
     const [plusieursRealisateurs, setPlusieursRealisateurs] = useState(false);
+    const [trierParOscars, setTrierParOscars] = useState(false);
 
     useEffect(() => {
         Promise.all([getFilms(), getGenres(), getRealisateurs(), getActeurs()]).then(([filmsAPI, genresAPI, RealAPI, ActeurAPI]) => {
@@ -48,6 +51,10 @@ export default function Catalogue() {
         return matchTitre && matchGenre && matchRealisateur && matchActeur
             && matchPlusieursRealisateurs;
     });
+
+    const filmsAffiches = trierParOscars
+        ? [...FiltreFilms].sort((filmA, filmB) => (filmB.nombreOscars ?? 0) - (filmA.nombreOscars ?? 0))
+        : FiltreFilms;
 
     return (
         <section>
@@ -79,6 +86,8 @@ export default function Catalogue() {
                             setChoixActeur={setChoixActeur}
                             plusieursRealisateurs={plusieursRealisateurs}
                             setPlusieursRealisateurs={setPlusieursRealisateurs}
+                            trierParOscars={trierParOscars}
+                            setTrierParOscars={setTrierParOscars}
                             nombreFilms={FiltreFilms.length}
                         />
 
@@ -86,9 +95,9 @@ export default function Catalogue() {
                             aria-label="Catalogue de films"
                             className="min-w-0 flex-1"
                         >
-                            {FiltreFilms.length > 0 ? (
+                            {filmsAffiches.length > 0 ? (
                                 <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
-                                    {FiltreFilms.map((film) => (
+                                    {filmsAffiches.map((film) => (
                                         <Link
                                             key={film.id}
                                             to={`/film/${encodeURIComponent(film.id)}`} // encodeURIComponent remplace les caractères spéciaux si il y en a
@@ -101,8 +110,15 @@ export default function Catalogue() {
                                                     className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                                                 />
                                             </div>
-                                            <p className="p-3 text-sm font-medium text-white">
-                                                {film.titre}
+                                            <p className="p-2 text-sm font-medium text-white">
+                                                {film.titre} {film.nombreOscars > 0 && (
+                                                    <span className="gap-2 ml-2 inline-flex items-center rounded-full bg-yellow-600 px-2 py-0.5 text-xs font-semibold text-slate-900">
+                                                        {film.nombreOscars} <FaTrophy />
+                                                    </span>
+                                                )}
+                                            </p>
+                                            <p className="p-2 text-sm font-light text-white">
+                                                {film.genre.map((genre) => genre.libelle).join(", ")}
                                             </p>
                                         </Link>
                                     ))}
