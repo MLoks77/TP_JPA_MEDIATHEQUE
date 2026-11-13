@@ -15,14 +15,13 @@ public class FilmController {
     @Autowired
     private FilmRepository filmRepository;
 
-    @GetMapping
+    @GetMapping // permet de récupérer tous les films
     public List<Film> getAllFilms() {
         return filmRepository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // permet de récupérer un film par son id
     public Film getFilmById(@PathVariable Long id) {
         return filmRepository.findById(id).orElse(null);
     }
-
 }

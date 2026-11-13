@@ -5,7 +5,7 @@ const API_URL = "http://localhost:8080";
 export async function getFilms() {
   try {
     const reponse = await fetch(`${API_URL}/api/films`, {
-      cache: 'no-store', 
+      cache: 'no-store',
     });
 
     if (!reponse.ok) {
@@ -16,6 +16,23 @@ export async function getFilms() {
   } catch (error) {
     console.error('Erreur API Films :', error);
     return [];
+  }
+}
+
+export async function getFilmsById(id) {
+  try {
+    const reponse = await fetch(`${API_URL}/api/films/${id}`, {
+      cache: 'no-store',
+    });
+
+    if (!reponse.ok) {
+      throw new Error(`Erreur lors de la récupération du film avec l'ID ${id}`);
+    }
+
+    return await reponse.json(); // renvoit le json du film
+  } catch (error) {
+    console.error(`Erreur API Film avec l'ID ${id} :`, error);
+    return null;
   }
 }
 
@@ -36,10 +53,27 @@ export async function getActeurs() {
   }
 }
 
+export async function getActeursByCode(code) {
+  try {
+    const reponse = await fetch(`${API_URL}/api/acteurs/${code}`, {
+      cache: 'no-store',
+    });
+
+    if (!reponse.ok) {
+      throw new Error('Erreur lors de la récupération des acteurs par code');
+    }
+
+    return await reponse.json(); // renvoit le json des acteurs
+  } catch (error) {
+    console.error('Erreur API acteurs par code:', error);
+    return [];
+  }
+}
+
 export async function getGenres() {
   try {
     const reponse = await fetch(`${API_URL}/api/genres`, {
-      cache: 'no-store', 
+      cache: 'no-store',
     });
 
     if (!reponse.ok) {
@@ -70,5 +104,21 @@ export async function getRealisateurs() {
   }
 }
 
+export async function getRealisateursById(id) {
+  try {
+    const reponse = await fetch(`${API_URL}/api/realisateurs/${id}`, {
+      cache: 'no-store',
+    });
+
+    if (!reponse.ok) {
+      throw new Error('Erreur lors de la récupération des realisateurs par code');
+    }
+
+    return await reponse.json(); // renvoit le json des realisateurs
+  } catch (error) {
+    console.error('Erreur API realisateurs par code:', error);
+    return [];
+  }
+}
 
 

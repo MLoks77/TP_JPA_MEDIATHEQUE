@@ -22,7 +22,7 @@ export default function Navbar() {
                     <Link
                         key={item.titre}
                         to={item.lien}
-                        className={`text-slate-300 transition hover:text-white ${
+                        className={`text-slate-300 transition hover:text-white p-2 ${
                             pathname === item.lien && item.lien !== "/"
                                 ? "underline underline-offset-4"
                                 : ""
