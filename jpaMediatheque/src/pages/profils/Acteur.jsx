@@ -1,5 +1,5 @@
 // api
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getActeursByCode, getFilms } from "../../services/api";
 // composants
@@ -7,6 +7,7 @@ import Navbar from "../../composants/navbar";
 import Footer from "../../composants/footer";
 import Filarial from "../../composants/filarial";
 import Revenir from "../../composants/revenir";
+import GSAPanimationApparition from "../../hooks/GSAPanimationApparition";
 
 export default function Acteur() {
     const { code } = useParams(); // utilise les params du router/url ( Acteur/:id ), il utilise donc :id
@@ -21,9 +22,13 @@ export default function Acteur() {
         });
     }, [code]);
 
-    const filmsActeur = films.filter((film) =>
-        film.acteur?.some((acteurLie) => acteurLie.code === code)
+    const filmsActeur = useMemo(
+        () => films.filter((film) =>
+            film.acteur?.some((acteurLie) => acteurLie.code === code)
+        ),
+        [films, code]
     );
+    const filmsActeurRef = GSAPanimationApparition(filmsActeur);
 
     return (
         <section>
@@ -79,12 +84,15 @@ export default function Acteur() {
                         </h2>
                     </header>
                     {filmsActeur.length > 0 ? (
-                        <div className="flex flex-wrap justify-center gap-4 sm:justify-start">
+                        <div
+                            ref={filmsActeurRef}
+                            className="flex flex-wrap justify-center gap-4 sm:justify-start"
+                        >
                             {filmsActeur.map((film) => (
                                 <Link
                                     key={film.id}
                                     to={`/film/${encodeURIComponent(film.id)}`}
-                                    className="group flex w-44 shrink-0 flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white"
+                                    className="opacity-0 group flex w-44 shrink-0 flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white"
                                 >
                                     <div className="aspect-3/4 h-64 w-full overflow-hidden bg-slate-900">
                                         <img

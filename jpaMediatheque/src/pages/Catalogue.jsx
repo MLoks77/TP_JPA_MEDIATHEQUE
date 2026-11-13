@@ -4,12 +4,14 @@ import Footer from '../composants/footer'
 import Filarial from '../composants/filarial';
 import Filtre from '../composants/catalogue/filtre';
 
+// icons
 import { FaTrophy } from "react-icons/fa";
 
 // api
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getFilms, getGenres, getRealisateurs, getActeurs } from "../services/api";
 import { Link } from 'react-router-dom'
+import GSAPanimationApparition from "../hooks/GSAPanimationApparition";
 
 export default function Catalogue() {
     // api
@@ -36,25 +38,29 @@ export default function Catalogue() {
         });
     }, []);
 
-    const FiltreFilms = films.filter((film) => {
-        const matchTitre = film.titre?.toLowerCase().includes(search.toLowerCase());
-        const matchGenre = !ChoixGenre
-            || film.genre?.some((genre) => genre.code === ChoixGenre); // vérifie si le film a le genre choisi
-        const matchRealisateur = !ChoixReal
-            || film.realisateur?.some((realisateur) => String(realisateur.id) === ChoixReal); // vérifie si le film a le réalisateur choisi
-        const matchActeur = ChoixActeur.length === 0
-            || film.acteur?.some((acteur) =>
-                ChoixActeur.some((choisi) => choisi.code === acteur.code)
-            ); // vérifie si le film a au moins un acteur choisi
-        const matchPlusieursRealisateurs = !plusieursRealisateurs
-            || (film.realisateur?.length ?? 0) > 1; // multiréalisateurs
-        return matchTitre && matchGenre && matchRealisateur && matchActeur
-            && matchPlusieursRealisateurs;
-    });
+    const filmsAffiches = useMemo(() => {
+        const filmsFiltres = films.filter((film) => {
+            const matchTitre = film.titre?.toLowerCase().includes(search.toLowerCase());
+            const matchGenre = !ChoixGenre
+                || film.genre?.some((genre) => genre.code === ChoixGenre);
+            const matchRealisateur = !ChoixReal
+                || film.realisateur?.some((realisateur) => String(realisateur.id) === ChoixReal);
+            const matchActeur = ChoixActeur.length === 0
+                || film.acteur?.some((acteur) =>
+                    ChoixActeur.some((choisi) => choisi.code === acteur.code)
+                );
+            const matchPlusieursRealisateurs = !plusieursRealisateurs
+                || (film.realisateur?.length ?? 0) > 1;
+            return matchTitre && matchGenre && matchRealisateur && matchActeur
+                && matchPlusieursRealisateurs;
+        });
 
-    const filmsAffiches = trierParOscars
-        ? [...FiltreFilms].sort((filmA, filmB) => (filmB.nombreOscars ?? 0) - (filmA.nombreOscars ?? 0))
-        : FiltreFilms;
+        return trierParOscars
+            ? filmsFiltres.sort((filmA, filmB) => (filmB.nombreOscars ?? 0) - (filmA.nombreOscars ?? 0))
+            : filmsFiltres;
+    }, [films, search, ChoixGenre, ChoixReal, ChoixActeur, plusieursRealisateurs, trierParOscars]);
+
+    const animApparition = GSAPanimationApparition(filmsAffiches);
 
     return (
         <section>
@@ -88,7 +94,7 @@ export default function Catalogue() {
                             setPlusieursRealisateurs={setPlusieursRealisateurs}
                             trierParOscars={trierParOscars}
                             setTrierParOscars={setTrierParOscars}
-                            nombreFilms={FiltreFilms.length}
+                            nombreFilms={filmsAffiches.length}
                         />
 
                         <section
@@ -96,12 +102,12 @@ export default function Catalogue() {
                             className="min-w-0 flex-1"
                         >
                             {filmsAffiches.length > 0 ? (
-                                <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+                                <div ref={animApparition} className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
                                     {filmsAffiches.map((film) => (
                                         <Link
                                             key={film.id}
                                             to={`/film/${encodeURIComponent(film.id)}`} // encodeURIComponent remplace les caractères spéciaux si il y en a
-                                            className="group flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white"
+                                            className="group opacity-0 flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white"
                                         >
                                             <div className="aspect-2/3 w-full overflow-hidden bg-slate-900">
                                                 <img

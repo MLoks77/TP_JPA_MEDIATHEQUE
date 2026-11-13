@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 // api
 import { useEffect, useMemo, useState } from "react";
 import { getFilms, getGenres, getRealisateurs, getActeurs } from "../services/api";
+import GSAPanimationApparition from "../hooks/GSAPanimationApparition";
 
 export default function Mediatheque() {
     // api
@@ -40,10 +41,13 @@ export default function Mediatheque() {
 
     // Film + oscars
 
-    const filmsPlusOscars = [...films]
-        .filter((film) => film.nombreOscars > 0) // condition pour virer = 0
-        .sort((filmA, filmB) => filmB.nombreOscars - filmA.nombreOscars) // compare en enlevant a chaque fois
-        .slice(0, 3); // limite a 3
+    const filmsPlusOscars = useMemo(
+        () => [...films]
+            .filter((film) => film.nombreOscars > 0)
+            .sort((filmA, filmB) => filmB.nombreOscars - filmA.nombreOscars)
+            .slice(0, 3),
+        [films]
+    );
 
     // pour proposer des films aux genres randoms
 
@@ -54,11 +58,16 @@ export default function Mediatheque() {
         [genres]
     );
 
-    const genresFilm = genreRandom
-        ? films
-            .filter((film) => film.genre?.some((genre) => genre.code === genreRandom.code))
-            .slice(0, 3)
-        : [];
+    const genresFilm = useMemo(
+        () => genreRandom
+            ? films
+                .filter((film) => film.genre?.some((genre) => genre.code === genreRandom.code))
+                .slice(0, 3)
+            : [],
+        [films, genreRandom]
+    );
+    const genresFilmRef = GSAPanimationApparition(genresFilm);
+    const filmsPlusOscarsRef = GSAPanimationApparition(filmsPlusOscars);
 
 
 
@@ -75,8 +84,14 @@ export default function Mediatheque() {
                             className="h-full w-full object-cover"
                         />
                         <div className="absolute inset-0 bg-black/40"></div>
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-white">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-white gap-5">
                             <h1 className="dancing-script text-5xl md:text-6xl font-bold mb-2">Votre médiathèque, en ligne.</h1>
+                            <Link
+                                to="/catalogue"
+                                className="dancing-script rounded-xl bg-white px-6 py-3 text-3xl font-semibold text-slate-900 transition duration-300 hover:bg-slate-200 shadow-lg"
+                            >
+                                Explorer le catalogue
+                            </Link>
                         </div>
                     </div>
                 </section>
@@ -89,12 +104,15 @@ export default function Mediatheque() {
                                 Découvrez par genre : {genreRandom?.libelle ?? ""}
                             </h1>
                         </header>
-                        <div className="flex flex-wrap justify-center sm:justify-start gap-4">
+                        <div
+                            ref={genresFilmRef}
+                            className="flex flex-wrap justify-center sm:justify-start gap-4"
+                        >
                             {genresFilm.map((film) => (
                                 <Link
                                     key={film.id}
                                     to={`/film/${encodeURIComponent(film.id)}`}
-                                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white w-44 shrink-0"
+                                    className="opacity-0 group flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white w-44 shrink-0"
                                 >
                                     <div className="aspect-2/3 w-full overflow-hidden bg-slate-900 h-52">
                                         <img
@@ -121,12 +139,15 @@ export default function Mediatheque() {
                                 Nos 3 films avec le plus d'oscars
                             </h1>
                         </header>
-                        <div className="flex flex-wrap justify-center sm:justify-start gap-4">
+                        <div
+                            ref={filmsPlusOscarsRef}
+                            className="flex flex-wrap justify-center sm:justify-start gap-4"
+                        >
                             {filmsPlusOscars.map((film) => (
                                 <Link
                                     key={film.id}
                                     to={`/film/${encodeURIComponent(film.id)}`}
-                                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white w-44 shrink-0"
+                                    className="opacity-0 group flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white w-44 shrink-0"
                                 >
                                     <div className="aspect-2/3 w-full overflow-hidden bg-slate-900 h-52">
                                         <img

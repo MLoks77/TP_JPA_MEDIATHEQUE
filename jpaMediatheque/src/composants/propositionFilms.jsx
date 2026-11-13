@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getFilms } from "../services/api";
+import GSAPanimationApparition from "../hooks/GSAPanimationApparition";
 
 export default function PropositionFilms({ film }) {
     const [suggestionState, setSuggestionState] = useState({ filmId: null, films: [] });
@@ -36,6 +37,7 @@ export default function PropositionFilms({ film }) {
     }, [film]);
 
     const suggestions = suggestionState.filmId === film.id ? suggestionState.films : [];
+    const suggestionsRef = GSAPanimationApparition(suggestions);
 
     return (
         <section className="mx-auto w-full max-w-7xl px-6 pt-6 pb-15">
@@ -44,12 +46,15 @@ export default function PropositionFilms({ film }) {
                     D'autres films de notre catalogue
                 </h2>
             </header>
-            <div className="flex flex-wrap justify-center gap-4 sm:justify-start">
+            <div
+                ref={suggestionsRef}
+                className="flex flex-wrap justify-center gap-4 sm:justify-start"
+            >
                 {suggestions.map((suggestion) => (
                     <Link
                         key={suggestion.id}
                         to={`/film/${encodeURIComponent(suggestion.id)}`}
-                        className="group flex w-44 shrink-0 flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white"
+                        className="opacity-0 group flex w-44 shrink-0 flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition duration-300 hover:border-white"
                     >
                         <div className="aspect-3/4 h-64 w-full overflow-hidden bg-slate-900">
                             <img
