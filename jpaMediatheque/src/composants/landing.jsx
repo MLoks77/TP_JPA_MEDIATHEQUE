@@ -1,11 +1,26 @@
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react";
+
+// composant
 import DriftWall from "./DriftWall";
 
-const items = []
+// api
+import { getFilms } from "../services/api";
 
 const titre = "Médiathèque"
 
 export default function Landing() {
+   const [items, setItems] = useState([]); // je définis un etat pour les items de la landing
+
+   useEffect(() => {
+       getFilms().then((films) => {
+           setItems(films.map((film) => ({ // et j'insère les films dans l'état items pour les afficher
+               image: film.imageURL,
+               title: film.titre,
+           })));
+       });
+   }, []);
+
     return (
         <section className="flex min-h-screen w-full flex-col overflow-hidden bg-slate-950 md:flex-row">
             <div className="relative order-1 h-[45vh] min-h-70 w-full md:order-2 md:h-screen md:min-h-140 md:w-[58%]">
