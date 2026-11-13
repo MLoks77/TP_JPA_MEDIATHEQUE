@@ -16,7 +16,7 @@ public class Realisateur {
     private int nbrFilmsRealises;
     private String imageURL;
 
-    @ManyToMany(mappedBy = "realisateur")
+    @ManyToMany(mappedBy = "realisateur") // mapped by = "realisateur" car c'est le nom de l'attribut dans la classe Film qui fait référence à Realisateur
     private List<Film> films;
 
     public Realisateur() {

@@ -1,4 +1,4 @@
-// J'ai demandé à une IA de rédiger ce code pour pouvoir importer les json 
+// J'ai demandé à une IA de rédiger ce code pour pouvoir importer les json dans ressource
 
 package com.tp.mediatheque;
 
