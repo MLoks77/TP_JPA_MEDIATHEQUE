@@ -8,7 +8,7 @@ export default function Mediatheque() {
         <section>
             <Navbar />
             <Filarial titrePage="Médiatheque" />
-            <main className="min-h-screen bg-linear-to-r from-slate-800 to-slate-700">
+            <main className="min-h-screen bg-linear-to-r from-slate-900 to-slate-700">
                 <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-14">
                     <p>Image</p>
                 </div>
