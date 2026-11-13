@@ -7,15 +7,16 @@ import { useParams, Link } from "react-router-dom";
 import { getFilmsById } from "../services/api";
 
 import Revenir from '../composants/revenir';
+import PropositionFilms from '../composants/propositionFilms';
 
 export default function Film() {
     const { id } = useParams(); // utilise les params du router/url ( film/:id ), il utilise donc :id
 
-    const [film, setFilm] = useState([]);
+    const [film, setFilm] = useState({});
 
     useEffect(() => {
         getFilmsById(id).then((filmAPI) => {
-            setFilm(filmAPI);
+            setFilm(filmAPI ?? {});
         });
     }, [id]);
 
@@ -27,7 +28,7 @@ export default function Film() {
                 {/*infos du film*/}
 
                 <section className="p-4 max-w-7xl w-full mx-auto">
-                    <Revenir destination="/catalogue" texte="au catalogue"/>
+                    <Revenir destination="/catalogue" texte="au catalogue" />
                 </section>
 
                 <section className="p-4 max-w-7xl w-full mx-auto text-white">
@@ -138,8 +139,8 @@ export default function Film() {
                     </div>
                 </section>
 
-                {/*proposition dans le même genre*/}
-                <hr className="p-4 mt-10 max-w-7xl w-full mx-auto text-slate-600 opacity-70"></hr>
+                <hr className="p-4 mt-10 max-w-7xl w-full mx-auto border-slate-600 opacity-70" />
+                <PropositionFilms film={film} />
             </main>
 
             <Footer />

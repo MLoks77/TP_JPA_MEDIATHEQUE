@@ -4,7 +4,7 @@ const titre ="Médiathèque"
 
 const Liens = [
     { titre: "Accueil", lien: "/" },
-    { titre: "Mediatheque", lien: "/mediatheque" },
+    { titre: "Médiathèque", lien: "/mediatheque" },
     { titre: "Catalogue", lien: "/catalogue" },
 ];
 

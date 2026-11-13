@@ -6,7 +6,7 @@ const textF = "Explorez des milliers de films, des grands classiques aux derniè
 
 const Liens = [
     { titre: "Accueil", lien: "/" },
-    { titre: "Mediatheque", lien: "/mediatheque" },
+    { titre: "Médiathèque", lien: "/mediatheque" },
     { titre: "Catalogue", lien: "/catalogue" },
 ];
 
