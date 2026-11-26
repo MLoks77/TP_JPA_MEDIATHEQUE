@@ -128,4 +128,42 @@ export async function getRealisateursById(id) {
   }
 }
 
+// médiathèques (chaque médiathèque contient la liste de ses films)
+export async function getMediatheques() {
+  try {
+    const reponse = await fetch(`${API_URL}/api/mediatheques`, {
+      cache: 'no-store',
+    });
+
+    if (!reponse.ok) {
+      throw new Error('Erreur lors de la récupération des médiathèques');
+    }
+
+    return await reponse.json(); // renvoit le json des médiathèques
+  } catch (error) {
+    console.error('Erreur API médiathèques :', error);
+    return [];
+  }
+}
+
+// médiathèque par id
+export async function getMediathequeById(id) {
+  try {
+    const reponse = await fetch(`${API_URL}/api/mediatheques/${id}`, {
+      cache: 'no-store',
+    });
+
+    if (!reponse.ok) {
+      throw new Error(`Erreur lors de la récupération de la médiathèque avec l'ID ${id}`);
+    }
+
+    // le back renvoie un corps vide si l'id n'existe pas
+    const texte = await reponse.text();
+    return texte ? JSON.parse(texte) : null; // renvoit le json de la médiathèque
+  } catch (error) {
+    console.error(`Erreur API médiathèque avec l'ID ${id} :`, error);
+    return null;
+  }
+}
+
 

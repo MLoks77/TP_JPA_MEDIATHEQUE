@@ -77,6 +77,17 @@ export default function Film() {
                                     <p>
                                         <span className="font-semibold text-white">Oscars :</span> {film.nombreOscars ?? 0}
                                     </p>
+                                    {film.mediatheque && (
+                                        <p>
+                                            <span className="font-semibold text-white">Disponible à :</span>{" "}
+                                            <Link
+                                                to={`/mediatheque/${film.mediatheque.id}`}
+                                                className="underline underline-offset-4 hover:text-white"
+                                            >
+                                                {film.mediatheque.nom}
+                                            </Link>
+                                        </p>
+                                    )}
                                 </div>
                             </div>
 

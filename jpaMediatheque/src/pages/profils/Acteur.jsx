@@ -39,7 +39,7 @@ export default function Acteur() {
             <main className="min-h-screen bg-linear-to-r from-slate-900  to-slate-700">
 
                 <section className="p-4 max-w-7xl w-full mx-auto">
-                    <Revenir destination="/mediatheque" texte="à la médiathèque" />
+                    <Revenir destination="/mediatheques" texte="aux médiathèques" />
                 </section>
 
                 {/*partie avec les informations du profil de l'acteur*/}

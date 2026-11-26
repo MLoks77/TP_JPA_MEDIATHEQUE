@@ -2,42 +2,79 @@
 import Navbar from '../composants/navbar'
 import Footer from '../composants/footer'
 import Filarial from '../composants/filarial'
+import Revenir from '../composants/revenir'
 //
 import bg from "/images/filmbg.webp"
 // react
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 // api
 import { useEffect, useMemo, useState } from "react";
-import { getFilms, getGenres, getRealisateurs, getActeurs } from "../services/api";
+import { getMediathequeById } from "../services/api";
 import GSAPanimationApparition from "../hooks/GSAPanimationApparition";
 
-export default function Mediatheque() {
-    // api
-    const [films, setFilms] = useState([]);
-    const [genres, setGenres] = useState([]);
-    const [realisateurs, setRealisateurs] = useState([]);
-    const [acteurs, setActeurs] = useState([]);
-
-    // useEffect pour les api
-    useEffect(() => {
-        Promise.all([getFilms(), getGenres(), getRealisateurs(), getActeurs()]).then(([filmsAPI, genresAPI, RealAPI, ActeurAPI]) => {
-            setFilms(filmsAPI);
-            setGenres(genresAPI);
-            setRealisateurs(RealAPI);
-            setActeurs(ActeurAPI);
-
-        });
-    }, []);
-
-    // réalisateur qui a réaliser le plus de film
-
-    const realisateurPlusDeFilms = realisateurs.reduce((meilleur, realisateur) => {
-        // reduce permet de trouver le réalisateur avec le plus de films réalisés en comparant le nombre de films réalisés par chaque réalisateur. 
-        if (!meilleur || realisateur.nbrFilmsRealises > meilleur.nbrFilmsRealises) {
-            return realisateur;
+// retire les doublons d'une liste en se basant sur une clé (id, code...)
+function sansDoublons(liste, cle) {
+    const vus = new Map();
+    liste.forEach((element) => {
+        if (!vus.has(element[cle])) {
+            vus.set(element[cle], element);
         }
-        return meilleur;
-    }, null);
+    });
+    return [...vus.values()];
+}
+
+export default function Mediatheque() {
+    const { id } = useParams(); 
+
+    // api : undefined = en cours de chargement, null = médiathèque introuvable
+    const [mediatheque, setMediatheque] = useState(undefined);
+    const [tirageGenre, setTirageGenre] = useState(0);
+
+    useEffect(() => {
+        getMediathequeById(id).then((mediathequeAPI) => {
+            setMediatheque(mediathequeAPI);
+            setTirageGenre(Math.random());
+        });
+    }, [id]);
+
+    // tout est calculé à partir des films de CETTE médiathèque
+    const films = useMemo(() => mediatheque?.films ?? [], [mediatheque]);
+
+    const genres = useMemo(
+        () => sansDoublons(films.flatMap((film) => film.genre ?? []), "code"),
+        [films]
+    );
+    const realisateurs = useMemo(
+        () => sansDoublons(films.flatMap((film) => film.realisateur ?? []), "id"),
+        [films]
+    );
+    const acteurs = useMemo(
+        () => sansDoublons(films.flatMap((film) => film.acteur ?? []), "code"),
+        [films]
+    );
+
+    // réalisateur qui a réalisé le plus de films dans cette médiathèque
+
+    const realisateurPlusDeFilms = useMemo(() => {
+        const nbFilmsParRealisateur = new Map();
+        films.forEach((film) => {
+            (film.realisateur ?? []).forEach((realisateur) => {
+                nbFilmsParRealisateur.set(realisateur.id, (nbFilmsParRealisateur.get(realisateur.id) ?? 0) + 1);
+            });
+        });
+
+        // reduce permet de garder le réalisateur avec le plus de films dans la médiathèque
+        // en cas d'égalité, on départage avec le nombre total de films réalisés
+        return realisateurs.reduce((meilleur, realisateur) => {
+            const nb = nbFilmsParRealisateur.get(realisateur.id);
+            const nbMeilleur = meilleur ? nbFilmsParRealisateur.get(meilleur.id) : -1;
+            if (!meilleur || nb > nbMeilleur
+                || (nb === nbMeilleur && realisateur.nbrFilmsRealises > meilleur.nbrFilmsRealises)) {
+                return { ...realisateur, nbFilmsMediatheque: nb };
+            }
+            return meilleur;
+        }, null);
+    }, [films, realisateurs]);
 
     // Film + oscars
 
@@ -49,13 +86,13 @@ export default function Mediatheque() {
         [films]
     );
 
-    // pour proposer des films aux genres randoms
+    // pour proposer des films aux genres randoms (parmi les genres présents dans la médiathèque)
 
     const genreRandom = useMemo(
         () => genres.length > 0
-            ? genres[Math.floor(Math.random() * genres.length)]
+            ? genres[Math.floor(tirageGenre * genres.length)]
             : null,
-        [genres]
+        [genres, tirageGenre]
     );
 
     const genresFilm = useMemo(
@@ -69,13 +106,34 @@ export default function Mediatheque() {
     const genresFilmRef = GSAPanimationApparition(genresFilm);
     const filmsPlusOscarsRef = GSAPanimationApparition(filmsPlusOscars);
 
-
+    // médiathèque introuvable
+    if (mediatheque === null) {
+        return (
+            <section>
+                <Navbar />
+                <Filarial titrePage="Médiathèques" />
+                <main className="min-h-screen bg-linear-to-r from-slate-900 to-slate-700">
+                    <section className="p-4 max-w-7xl w-full mx-auto space-y-6">
+                        <Revenir destination="/mediatheques" texte="aux médiathèques" />
+                        <p className="rounded-xl border border-slate-600 bg-slate-900/40 p-6 text-slate-300">
+                            Cette médiathèque n'existe pas.
+                        </p>
+                    </section>
+                </main>
+                <Footer />
+            </section>
+        )
+    }
 
     return (
         <section>
             <Navbar />
-            <Filarial titrePage="Médiatheque" />
+            <Filarial titrePage="Médiathèques" titresuite={mediatheque?.nom} />
             <main className="min-h-screen bg-linear-to-r from-slate-900 to-slate-700">
+                <section className="p-4 max-w-7xl w-full mx-auto">
+                    <Revenir destination="/mediatheques" texte="aux médiathèques" />
+                </section>
+
                 <section className="mx-auto w-full max-w-7xl px-6">
                     <div className="relative h-80 md:h-112.5 w-full overflow-hidden rounded-xl mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
                         <img
@@ -85,12 +143,17 @@ export default function Mediatheque() {
                         />
                         <div className="absolute inset-0 bg-black/40"></div>
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-white gap-5">
-                            <h1 className="dancing-script text-5xl md:text-6xl font-bold mb-2">Votre médiathèque, en ligne.</h1>
+                            <h1 className="dancing-script text-5xl md:text-6xl font-bold mb-2">{mediatheque?.nom}</h1>
+                            {mediatheque && (
+                                <p className="text-lg text-slate-200">
+                                    {mediatheque.adresse}, {mediatheque.ville} · {films.length} film{films.length !== 1 ? "s" : ""}
+                                </p>
+                            )}
                             <Link
-                                to="/catalogue"
+                                to={`/catalogue?mediatheque=${encodeURIComponent(id)}`}
                                 className="dancing-script rounded-xl bg-white px-6 py-3 text-3xl font-semibold text-slate-900 transition duration-300 hover:bg-slate-200 shadow-lg"
                             >
-                                Explorer le catalogue
+                                Explorer ses films
                             </Link>
                         </div>
                     </div>
@@ -144,6 +207,10 @@ export default function Mediatheque() {
                             </h1>
                         </header>
 
+                        {mediatheque && filmsPlusOscars.length === 0 && (
+                            <p className="text-slate-300">Aucun film oscarisé dans cette médiathèque.</p>
+                        )}
+
                         <div
                             ref={filmsPlusOscarsRef}
                             className="flex flex-wrap justify-center sm:justify-start gap-4"
@@ -177,14 +244,14 @@ export default function Mediatheque() {
 
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                         <h1 className=" text-3xl font-extrabold tracking-tight text-white md:text-5xl">
-                            Les réalisateurs de notre catalogue
+                            Les réalisateurs de cette médiathèque
                         </h1>
                     </header>
 
                     <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-600">
                         {realisateurs.map((realisateur) => (
                             <Link key={realisateur.id} to={`/profil/realisateur/${realisateur.id}`}>
-                                <div key={realisateur.id} className="group flex flex-col items-center text-center shrink-0 w-28">
+                                <div className="group flex flex-col items-center text-center shrink-0 w-28">
                                     <img
                                         src={realisateur.imageURL}
                                         alt={`${realisateur.prenom} ${realisateur.nom}`}
@@ -225,7 +292,10 @@ export default function Mediatheque() {
                                     <span className="font-semibold text-slate-400">Nationalité :</span> {realisateurPlusDeFilms.nationalite}
                                 </p>
                                 <p>
-                                    <span className="font-semibold text-slate-400">Films réalisés :</span> {realisateurPlusDeFilms.nbrFilmsRealises}
+                                    <span className="font-semibold text-slate-400">Films dans cette médiathèque :</span> {realisateurPlusDeFilms.nbFilmsMediatheque}
+                                </p>
+                                <p>
+                                    <span className="font-semibold text-slate-400">Films réalisés au total :</span> {realisateurPlusDeFilms.nbrFilmsRealises}
                                 </p>
                                 <p>
                                     <span className="font-semibold text-slate-400">Email :</span> {realisateurPlusDeFilms.email}
@@ -240,14 +310,14 @@ export default function Mediatheque() {
 
                     <header className="mb-8 border-b border-slate-600 pb-6 text-left">
                         <h1 className=" text-3xl font-extrabold tracking-tight text-white md:text-5xl">
-                            Les acteurs de notre catalogue
+                            Les acteurs de cette médiathèque
                         </h1>
                     </header>
 
                     <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-600">
                         {acteurs.map((acteur) => (
                             <Link key={acteur.code} to={`/profil/acteur/${acteur.code}`}>
-                                <div key={acteur.code} className="group flex flex-col items-center text-center shrink-0 w-28">
+                                <div className="group flex flex-col items-center text-center shrink-0 w-28">
                                     <img
                                         src={acteur.imageURL}
                                         alt={`${acteur.prenom} ${acteur.nom}`}

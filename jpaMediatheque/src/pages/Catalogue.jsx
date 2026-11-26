@@ -9,8 +9,8 @@ import { FaTrophy } from "react-icons/fa";
 
 // api
 import { useEffect, useMemo, useState } from "react";
-import { getFilms, getGenres, getRealisateurs, getActeurs } from "../services/api";
-import { Link } from 'react-router-dom'
+import { getFilms, getGenres, getRealisateurs, getActeurs, getMediatheques } from "../services/api";
+import { Link, useSearchParams } from 'react-router-dom'
 import GSAPanimationApparition from "../hooks/GSAPanimationApparition";
 
 export default function Catalogue() {
@@ -19,6 +19,12 @@ export default function Catalogue() {
     const [genres, setGenres] = useState([]);
     const [realisateurs, setRealisateurs] = useState([]);
     const [acteurs, setActeurs] = useState([]);
+    const [mediatheques, setMediatheques] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const ChoixMediatheque = searchParams.get("mediatheque") ?? "";
+    const setChoixMediatheque = (idMediatheque) => {
+        setSearchParams(idMediatheque ? { mediatheque: idMediatheque } : {}, { replace: true });
+    };
     // recherche
     const [search, setSearch] = useState("");
     // genre selectionné
@@ -29,17 +35,24 @@ export default function Catalogue() {
     const [trierParOscars, setTrierParOscars] = useState(false);
 
     useEffect(() => {
-        Promise.all([getFilms(), getGenres(), getRealisateurs(), getActeurs()]).then(([filmsAPI, genresAPI, RealAPI, ActeurAPI]) => {
+        Promise.all([getFilms(), getGenres(), getRealisateurs(), getActeurs(), getMediatheques()]).then(([filmsAPI, genresAPI, RealAPI, ActeurAPI, MediathequesAPI]) => {
             setFilms(filmsAPI);
             setGenres(genresAPI);
             setRealisateurs(RealAPI);
             setActeurs(ActeurAPI);
+            setMediatheques(MediathequesAPI);
 
         });
     }, []);
 
+    const mediathequeChoisie = mediatheques.find(
+        (mediatheque) => String(mediatheque.id) === ChoixMediatheque
+    );
+
     const filmsAffiches = useMemo(() => {
         const filmsFiltres = films.filter((film) => {
+            const matchMediatheque = !ChoixMediatheque
+                || String(film.mediatheque?.id) === ChoixMediatheque;
             const matchTitre = film.titre?.toLowerCase().includes(search.toLowerCase());
             const matchGenre = !ChoixGenre
                 || film.genre?.some((genre) => genre.code === ChoixGenre);
@@ -51,14 +64,14 @@ export default function Catalogue() {
                 );
             const matchPlusieursRealisateurs = !plusieursRealisateurs
                 || (film.realisateur?.length ?? 0) > 1;
-            return matchTitre && matchGenre && matchRealisateur && matchActeur
+            return matchMediatheque && matchTitre && matchGenre && matchRealisateur && matchActeur
                 && matchPlusieursRealisateurs;
         });
 
         return trierParOscars
             ? filmsFiltres.sort((filmA, filmB) => (filmB.nombreOscars ?? 0) - (filmA.nombreOscars ?? 0))
             : filmsFiltres;
-    }, [films, search, ChoixGenre, ChoixReal, ChoixActeur, plusieursRealisateurs, trierParOscars]);
+    }, [films, ChoixMediatheque, search, ChoixGenre, ChoixReal, ChoixActeur, plusieursRealisateurs, trierParOscars]);
 
     const animApparition = GSAPanimationApparition(filmsAffiches);
 
@@ -74,7 +87,9 @@ export default function Catalogue() {
                             Catalogue
                         </h1>
                         <p className="mt-2 text-slate-300">
-                            Découvrez l'ensemble des films disponibles dans notre médiathèque.
+                            {mediathequeChoisie
+                                ? `Découvrez les films disponibles à la ${mediathequeChoisie.nom}.`
+                                : "Découvrez l'ensemble des films disponibles dans nos médiathèques."}
                         </p>
                     </header>
 
@@ -84,6 +99,9 @@ export default function Catalogue() {
                             genres={genres}
                             realisateurs={realisateurs}
                             acteurs={acteurs}
+                            mediatheques={mediatheques}
+                            choixMediatheque={ChoixMediatheque}
+                            setChoixMediatheque={setChoixMediatheque}
                             search={search}
                             setSearch={setSearch}
                             choixGenre={ChoixGenre}

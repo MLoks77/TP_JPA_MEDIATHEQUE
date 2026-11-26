@@ -24,6 +24,9 @@ export default function Filtre({
     genres,
     realisateurs,
     acteurs,
+    mediatheques,
+    choixMediatheque,
+    setChoixMediatheque,
     search,
     setSearch,
     choixGenre,
@@ -61,6 +64,28 @@ export default function Filtre({
             </div>
 
             <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-2">
+                    <label
+                        htmlFor="filtre-mediatheque"
+                        className="text-sm font-medium text-slate-300"
+                    >
+                        Médiathèque
+                    </label>
+                    <select
+                        id="filtre-mediatheque"
+                        value={choixMediatheque}
+                        onChange={(event) => setChoixMediatheque(event.target.value)}
+                        className="w-full rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-white focus:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400/40"
+                    >
+                        <option value="">Toutes les médiathèques</option>
+                        {mediatheques.map((mediatheque) => (
+                            <option key={mediatheque.id} value={mediatheque.id}>
+                                {mediatheque.nom}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 <div className="flex flex-col gap-2">
                     <label
                         htmlFor="recherche-film"

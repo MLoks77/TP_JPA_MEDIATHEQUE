@@ -6,9 +6,12 @@ const textF = "Explorez des milliers de films, des grands classiques aux derniè
 
 const Liens = [
     { titre: "Accueil", lien: "/" },
-    { titre: "Médiathèque", lien: "/mediatheque" },
+    { titre: "Médiathèques", lien: "/mediatheques", actifs: ["/mediatheques", "/mediatheque/"] },
     { titre: "Catalogue", lien: "/catalogue" },
 ];
+
+const estActif = (pathname, item) =>
+    item.lien !== "/" && (item.actifs ?? [item.lien]).some((debut) => pathname.startsWith(debut));
 
 export default function Footer() {
     const { pathname } = useLocation();
@@ -36,7 +39,7 @@ export default function Footer() {
                                 <Link
                                     key={item.titre}
                                     to={item.lien}
-                                    className={`text-slate-300 transition hover:text-white p-2 ${pathname === item.lien && item.lien !== "/"
+                                    className={`text-slate-300 transition hover:text-white p-2 ${estActif(pathname, item)
                                             ? "underline underline-offset-4"
                                             : ""
                                         }`}

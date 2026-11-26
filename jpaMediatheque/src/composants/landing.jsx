@@ -59,10 +59,10 @@ export default function Landing() {
                         Explorez notre médiathèque gratuitement <br></br>et accédez à tout notre catalogue.
                     </p>
                     <Link
-                        to="/mediatheque"
+                        to="/mediatheques"
                         className="inline-flex max-w-full items-center justify-center rounded-lg bg-slate-600 px-6 py-3 text-center font-semibold text-white shadow-lg transition duration-300 hover:bg-slate-700"
                     >
-                        Consulter notre catalogue de films
+                        Découvrir nos médiathèques
                     </Link>
                 </div>
             </div>
