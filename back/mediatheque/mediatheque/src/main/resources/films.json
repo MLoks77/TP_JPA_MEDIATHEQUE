@@ -7,6 +7,7 @@
     "nationalite": "France",
     "nombreOscars": 0,
     "imageURL": "https://fr.web.img6.acsta.net/pictures/18/08/21/18/41/2636278.jpg",
+    "mediatheque": {"id": 1},
     "genre": [
       {"code": "DRAME", "libelle": "Drame"},
       {"code": "COMEDIE", "libelle": "Comédie"}
@@ -28,6 +29,7 @@
     "nationalite": "France",
     "nombreOscars": 2,
     "imageURL": "https://i0.wp.com/laurentlecrabe.com/wp-content/uploads/2024/10/IMG_2374.jpg?fit=1080%2C1350&ssl=1",
+    "mediatheque": {"id": 2},
     "genre": [
       {"code": "DRAME", "libelle": "Drame"},
       {"code": "COMEDIE", "libelle": "Comédie"}
@@ -49,6 +51,7 @@
     "nationalite": "France, Luxembourg",
     "nombreOscars": 0,
     "imageURL": "https://fr.web.img6.acsta.net/pictures/22/11/17/11/47/3561503.jpg",
+    "mediatheque": {"id": 3},
     "genre": [
       {"code": "AVENTURE", "libelle": "Aventure"},
       {"code": "HISTOIRE", "libelle": "Histoire"},
@@ -73,6 +76,7 @@
     "nationalite": "États-Unis",
     "nombreOscars": 2,
     "imageURL": "https://i.ebayimg.com/images/g/CM8AAOxy~dNQ9t4x/s-l1200.jpg",
+    "mediatheque": {"id": 1},
     "genre": [
       {"code": "DRAME", "libelle": "Drame"},
       {"code": "WESTERN", "libelle": "Western"}
@@ -94,6 +98,7 @@
     "nationalite": "États-Unis",
     "nombreOscars": 0,
     "imageURL": "https://m.media-amazon.com/images/M/MV5BZjYyNjFkZGMtMmY2Mi00ZDI1LWI0OGYtOTlkNjNiN2QxZDdlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "mediatheque": {"id": 2},
     "genre": [
       {"code": "ACTION", "libelle": "Action"},
       {"code": "COMEDIE", "libelle": "Comédie"},
@@ -116,6 +121,7 @@
     "nationalite": "Japon",
     "nombreOscars": 0,
     "imageURL": "https://m.media-amazon.com/images/M/MV5BYjY5OGJhZWItMjRkOC00YjI1LTg1NmEtMWI2MTBjZmIzNjAyXkEyXkFqcGc@._V1_.jpg",
+    "mediatheque": {"id": 3},
     "genre": [
       {"code": "DRAME", "libelle": "Drame"},
       {"code": "COMEDIE", "libelle": "Comédie"}
@@ -137,6 +143,7 @@
     "nationalite": "États-Unis",
     "nombreOscars": 0,
     "imageURL": "https://i.ebayimg.com/00/s/MTYwMFgxMTE5/z/RAAAAOSwx1VkAQbT/$_57.JPG?set_id=8800005007",
+    "mediatheque": {"id": 1},
     "genre": [
       {"code": "ACTION", "libelle": "Action"},
       {"code": "AVENTURE", "libelle": "Aventure"},
@@ -159,6 +166,7 @@
     "nationalite": "États-Unis",
     "nombreOscars": 2,
     "imageURL": "https://i.ebayimg.com/00/s/MTM1Mlg5MDA=/z/FaUAAOSwvFteklwI/$_57.JPG?set_id=8800005007",
+    "mediatheque": {"id": 2},
     "genre": [
       {"code": "ANIMATION", "libelle": "Animation"},
       {"code": "FAMILIAL", "libelle": "Familial"},
@@ -183,6 +191,7 @@
     "nationalite": "France",
     "nombreOscars": 0,
     "imageURL": "https://fr.web.img5.acsta.net/img/4e/64/4e644edc4b90cae39ea31727a29cdb09.jpg",
+    "mediatheque": {"id": 3},
     "genre": [
       {"code": "COMEDIE", "libelle": "Comédie"},
       {"code": "DRAME", "libelle": "Drame"}
@@ -204,6 +213,7 @@
     "nationalite": "États-Unis, Canada, Afrique du Sud",
     "nombreOscars": 0,
     "imageURL": "https://cdng.europosters.eu/pod_public/1300/315989.jpg",
+    "mediatheque": {"id": 1},
     "genre": [
       {"code": "ACTION", "libelle": "Action"},
       {"code": "COMEDIE", "libelle": "Comédie"},
@@ -229,6 +239,7 @@
     "nationalite": "États-Unis",
     "nombreOscars": 0,
     "imageURL": "https://a.ltrbxd.com/resized/film-poster/8/8/7/6/5/3/887653-thunderbolts-0-2000-0-3000-crop.jpg?v=80380bc773",
+    "mediatheque": {"id": 2},
     "genre": [
       {"code": "ACTION", "libelle": "Action"},
       {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"},
@@ -251,6 +262,7 @@
     "nationalite": "États-Unis",
     "nombreOscars": 0,
     "imageURL": "https://www.movieartarena.com/imgs/episode8ib.jpg",
+    "mediatheque": {"id": 3},
     "genre": [
       {"code": "AVENTURE", "libelle": "Aventure"},
       {"code": "ACTION", "libelle": "Action"},
@@ -273,6 +285,7 @@
     "nationalite": "États-Unis",
     "nombreOscars": 0,
     "imageURL": "https://i.ebayimg.com/images/g/kEoAAOSwSKdhG9vZ/s-l1200.jpg",
+    "mediatheque": {"id": 1},
     "genre": [
       {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"},
       {"code": "ACTION", "libelle": "Action"},
@@ -295,6 +308,7 @@
     "nationalite": "États-Unis",
     "nombreOscars": 0,
     "imageURL": "https://www.comicsblog.fr/images/editeur/Arno/avril-2026/Clayface.jpeg",
+    "mediatheque": {"id": 2},
     "genre": [
       {"code": "HORREUR", "libelle": "Horreur"},
       {"code": "THRILLER", "libelle": "Thriller"},
@@ -317,6 +331,7 @@
     "nationalite": "Japon",
     "nombreOscars": 0,
     "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58htNKGPlvc7VUOCKknHKXX_IgBA4jxYUokMQcSAKkMLGrwtF9f-rVy4&s=10",
+    "mediatheque": {"id": 3},
     "genre": [
       {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"},
       {"code": "HORREUR", "libelle": "Horreur"},
@@ -339,6 +354,7 @@
     "nationalite": "États-Unis, Allemagne, France",
     "nombreOscars": 0,
     "imageURL": "https://scontent-cdg4-3.cdninstagram.com/v/t51.82787-15/707338391_18441559129137203_6207076784060830122_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&_nc_map=urlgen_bucketless&cb=30a688f7-99daaf84&ig_cache_key=MzkwODMyOTQ3NTQ2MTY3NjY4Mw%3D%3D.3-ccb7-5-cb30a688f7-99daaf84&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=g70okMN_bPYQ7kNvwEK9hG3&_nc_oc=AdpTjT_xgCC_BRp75T20uEMROg74Cy9Shf8AbMDqpY84Y40plL2yt9Z-LxTTHCJ36ybLKGESzAjd_SrQeFRxRr1u&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-cdg4-3.cdninstagram.com&_nc_gid=yJ-QKxMVQIsA6xV-r4XtwQ&_nc_ss=7a22e&oh=00_AQR1Ni-OUoSZvY9TQt6BhIdqbvHPfgYu994TwhUzeVJQbA&oe=6AFBF6F3",
+    "mediatheque": {"id": 1},
     "genre": [
       {"code": "HORREUR", "libelle": "Horreur"},
       {"code": "SCIENCE_FICTION", "libelle": "Science-Fiction"},

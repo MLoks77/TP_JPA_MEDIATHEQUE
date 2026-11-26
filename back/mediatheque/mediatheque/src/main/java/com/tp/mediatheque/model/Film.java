@@ -1,5 +1,6 @@
 package com.tp.mediatheque.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -25,6 +26,11 @@ public class Film {
 
     @ManyToMany
     private List<Acteur> acteur;
+
+    @ManyToOne
+    @JoinColumn(name = "mediatheque_id")
+    @JsonIgnoreProperties("films")
+    private Mediatheque mediatheque;
 
     public Film() {
     }
@@ -107,5 +113,13 @@ public class Film {
 
     public void setActeur(List<Acteur> acteur) {
         this.acteur = acteur;
+    }
+
+    public Mediatheque getMediatheque() {
+        return mediatheque;
+    }
+
+    public void setMediatheque(Mediatheque mediatheque) {
+        this.mediatheque = mediatheque;
     }
 }

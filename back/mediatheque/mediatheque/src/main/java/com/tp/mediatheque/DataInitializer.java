@@ -7,10 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tp.mediatheque.model.Acteur;
 import com.tp.mediatheque.model.Film;
 import com.tp.mediatheque.model.Genre;
+import com.tp.mediatheque.model.Mediatheque;
 import com.tp.mediatheque.model.Realisateur;
 import com.tp.mediatheque.repository.ActeurRepository;
 import com.tp.mediatheque.repository.FilmRepository;
 import com.tp.mediatheque.repository.GenreRepository;
+import com.tp.mediatheque.repository.MediathequeRepository;
 import com.tp.mediatheque.repository.RealisateurRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -35,16 +37,19 @@ public class DataInitializer implements CommandLineRunner {
     private final RealisateurRepository realisateurRepository;
     private final ActeurRepository acteurRepository;
     private final FilmRepository filmRepository;
+    private final MediathequeRepository mediathequeRepository;
 
     public DataInitializer(
             GenreRepository genreRepository,
             RealisateurRepository realisateurRepository,
             ActeurRepository acteurRepository,
-            FilmRepository filmRepository) {
+            FilmRepository filmRepository,
+            MediathequeRepository mediathequeRepository) {
         this.genreRepository = genreRepository;
         this.realisateurRepository = realisateurRepository;
         this.acteurRepository = acteurRepository;
         this.filmRepository = filmRepository;
+        this.mediathequeRepository = mediathequeRepository;
     }
 
     @Override
@@ -62,14 +67,21 @@ public class DataInitializer implements CommandLineRunner {
                 readList("/acteurs.json", Acteur.class),
                 Acteur::getCode,
                 "acteur");
-
-        if (filmRepository.count() != 0) {
-            return;
-        }
+        Map<Long, Mediatheque> mediathequesBySourceId = seedMediatheques(
+                readList("/mediatheques.json", Mediatheque.class));
 
         List<Film> films = readList("/films.json", Film.class);
         indexById(films, Film::getId, "film JSON");
+
+        if (filmRepository.count() != 0) {
+            // Base déjà remplie avant l'ajout des médiathèques : on rattache les films qui n'en ont pas encore
+            assignMissingMediatheques(films, mediathequesBySourceId);
+            return;
+        }
+
         for (Film film : films) {
+            film.setMediatheque(resolveMediatheque(
+                    film.getMediatheque(), mediathequesBySourceId, film.getTitre()));
             film.setGenre(resolveReferences(
                     film.getGenre(), Genre::getCode, genresByCode, "genre", film.getTitre()));
             film.setRealisateur(resolveReferences(
@@ -119,6 +131,74 @@ public class DataInitializer implements CommandLineRunner {
             directorsBySourceId.put(entry.getKey(), director);
         }
         return directorsBySourceId;
+    }
+
+    // Les id des médiathèques sont générés par la base : on les reconnaît par leur nom
+    // et on garde la correspondance id du JSON -> médiathèque en base
+    private Map<Long, Mediatheque> seedMediatheques(List<Mediatheque> source) {
+        Map<Long, Mediatheque> sourceById = indexById(source, Mediatheque::getId, "médiathèque JSON");
+        Map<String, Mediatheque> existingByName = new HashMap<>();
+        for (Mediatheque mediatheque : mediathequeRepository.findAll()) {
+            existingByName.putIfAbsent(mediathequeNameKey(mediatheque), mediatheque);
+        }
+
+        Map<Long, Mediatheque> mediathequesBySourceId = new HashMap<>();
+        for (Map.Entry<Long, Mediatheque> entry : sourceById.entrySet()) {
+            Mediatheque sourceMediatheque = entry.getValue();
+            String nameKey = mediathequeNameKey(sourceMediatheque);
+            Mediatheque mediatheque = existingByName.get(nameKey);
+            if (mediatheque == null) {
+                sourceMediatheque.setId(null);
+                mediatheque = mediathequeRepository.save(sourceMediatheque);
+                existingByName.put(nameKey, mediatheque);
+            }
+            mediathequesBySourceId.put(entry.getKey(), mediatheque);
+        }
+        return mediathequesBySourceId;
+    }
+
+    private String mediathequeNameKey(Mediatheque mediatheque) {
+        if (mediatheque.getNom() == null || mediatheque.getNom().isBlank()) {
+            throw new IllegalStateException("Nom manquant pour une médiathèque");
+        }
+        return mediatheque.getNom().trim().toLowerCase(Locale.ROOT);
+    }
+
+    private Mediatheque resolveMediatheque(
+            Mediatheque reference,
+            Map<Long, Mediatheque> mediathequesBySourceId,
+            String filmTitle) {
+        if (reference == null || reference.getId() == null) {
+            throw new IllegalStateException("Médiathèque absente pour le film : " + filmTitle);
+        }
+        Mediatheque mediatheque = mediathequesBySourceId.get(reference.getId());
+        if (mediatheque == null) {
+            throw new IllegalStateException(
+                    "Médiathèque introuvable pour le film " + filmTitle + " : " + reference.getId());
+        }
+        return mediatheque;
+    }
+
+    // Rattache les films déjà en base (sans médiathèque) en les retrouvant par leur titre dans films.json
+    private void assignMissingMediatheques(
+            List<Film> sourceFilms,
+            Map<Long, Mediatheque> mediathequesBySourceId) {
+        Map<String, Mediatheque> mediathequeByTitle = new HashMap<>();
+        for (Film sourceFilm : sourceFilms) {
+            mediathequeByTitle.put(
+                    sourceFilm.getTitre(),
+                    resolveMediatheque(sourceFilm.getMediatheque(), mediathequesBySourceId, sourceFilm.getTitre()));
+        }
+
+        List<Film> updated = new ArrayList<>();
+        for (Film film : filmRepository.findAll()) {
+            Mediatheque mediatheque = mediathequeByTitle.get(film.getTitre());
+            if (film.getMediatheque() == null && mediatheque != null) {
+                film.setMediatheque(mediatheque);
+                updated.add(film);
+            }
+        }
+        filmRepository.saveAll(updated);
     }
 
     private Map<String, Realisateur> indexDirectorsByName(List<Realisateur> directors) {
